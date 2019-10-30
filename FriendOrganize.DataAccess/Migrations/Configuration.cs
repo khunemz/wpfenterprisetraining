@@ -16,13 +16,13 @@ namespace FriendOrganize.DataAccess.Migrations
 
         protected override void Seed(FriendOrganize.DataAccess.FriendOrganizeDbContext context)
         {
-            //context.Friends.AddOrUpdate(f => f.FirstName == "Chutipong",
-            //    new Friend() {FirstName = "Rob", LastName = "Chuti", Email = "RobChu@gmail.com"},
-            //    new Friend() {FirstName = "Rob1", LastName = "Chuti", Email = "RobChu@gmail.com"},
-            //    new Friend() {FirstName = "Rob2", LastName = "Chuti", Email = "RobChu@gmail.com"},
-            //    new Friend() {FirstName = "Rob3", LastName = "Chuti", Email = "RobChu@gmail.com"},
-            //    new Friend() {FirstName = "Rob4", LastName = "Chuti", Email = "RobChu@gmail.com"}
-            //);
+            context.Friends.AddOrUpdate(f => f.FirstName,
+                new Friend() { FirstName = "Rob", LastName = "Chuti", Email = "RobChu@gmail.com" },
+                new Friend() { FirstName = "Rob1", LastName = "Chuti", Email = "RobChu@gmail.com" },
+                new Friend() { FirstName = "Rob2", LastName = "Chuti", Email = "RobChu@gmail.com" },
+                new Friend() { FirstName = "Rob3", LastName = "Chuti", Email = "RobChu@gmail.com" },
+                new Friend() { FirstName = "Rob4", LastName = "Chuti", Email = "RobChu@gmail.com" }
+            );
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
