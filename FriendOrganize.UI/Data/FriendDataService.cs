@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace FriendOrganize.UI.Data
         {
             _ctx = contextCreator;
         }
-		public IEnumerable<Friend> GetAll()
+		public async Task<List<Friend>> GetAllAsync()
 		{
             // return new List<Friend>()
             //{
@@ -31,7 +32,7 @@ namespace FriendOrganize.UI.Data
 
             using (var ctx = _ctx())
             {
-                return ctx.Friends.ToList();
+                return await  ctx.Friends.ToListAsync();
             }
            
         }
