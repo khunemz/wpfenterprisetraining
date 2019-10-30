@@ -4,8 +4,8 @@ using FriendOrganize.Model;
 
 namespace FriendOrganize.UI.Data
 {
-	public interface IFriendDataService
-	{
-		Task<List<Friend>> GetAllAsync();
+    public interface ILookUpDataService
+    {
+        Task<IEnumerable<LookupItem>> GetFriendLookupAsync();
     }
 }

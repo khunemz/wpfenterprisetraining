@@ -10,13 +10,16 @@ namespace FriendOrganize.UI.ViewModels
 		private readonly IFriendDataService _friendDataService;
 
 		private Friend _selectedFriend;
+        private INavigationViewModel _navViewModel;
 
-		public MainViewModel(IFriendDataService friendDataService)
+        public MainViewModel(IFriendDataService friendDataService , INavigationViewModel navViewModel)
 		{
 			Friends = new ObservableCollection<Friend>();
 
 			_friendDataService = friendDataService;
-		}
+
+            _navViewModel = navViewModel;
+        }
 
 		public ObservableCollection<Friend> Friends { get; set; }
 
@@ -33,10 +36,12 @@ namespace FriendOrganize.UI.ViewModels
 
 		public async Task LoadAsync()
 		{
-			var friends = await _friendDataService.GetAllAsync();
+			//var friends = await _friendDataService.GetAllAsync();
 
-			Friends.Clear();
-			foreach (var friend in friends) Friends.Add(friend);
-		}
+			//Friends.Clear();
+			//foreach (var friend in friends) Friends.Add(friend);
+
+            await _navViewModel.LoadAsync();
+        }
 	}
 }

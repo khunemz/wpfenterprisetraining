@@ -9,7 +9,7 @@ using FriendOrganize.Model;
 
 namespace FriendOrganize.UI.Data
 {
-	class FriendDataService : IFriendDataService
+	 public class FriendDataService : IFriendDataService
 	{
         private Func<FriendOrganizeDbContext> _ctx;
 
@@ -36,5 +36,7 @@ namespace FriendOrganize.UI.Data
             }
            
         }
-	}
+
+        
+    }
 }
