@@ -4,7 +4,7 @@ using FriendOrganize.UI.Data;
 
 namespace FriendOrganize.UI.ViewModels
 {
-	internal class MainViewModel : ViewModelBase
+	public class MainViewModel : ViewModelBase
 	{
 		private readonly IFriendDataService _friendDataService;
 
@@ -22,7 +22,7 @@ namespace FriendOrganize.UI.ViewModels
 
 		public Friend SelectedFriend
 		{
-			get { return _selectedFriend }
+			get { return _selectedFriend; }
 			set
 			{
 				_selectedFriend = value;

@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using FriendOrganize.UI.Data;
+using FriendOrganize.UI.ViewModels;
 
 namespace FriendOrganize.UI
 {
@@ -7,5 +9,12 @@ namespace FriendOrganize.UI
 	/// </summary>
 	public partial class App : Application
 	{
+		private void Application_StartUp(object sender, StartupEventArgs e)
+		{
+			var mainWindow = new MainWindow(
+				new MainViewModel(new FriendDataService()));
+
+			mainWindow.Show();
+		}
 	}
 }
