@@ -20,7 +20,7 @@ namespace FriendOrganize.UI.ViewModels
             Friends = new ObservableCollection<LookupItem>();
         }
 
-        public ObservableCollection<LookupItem> Friends { get; }
+        public ObservableCollection<LookupItem> Friends { get; set; }
 
 
         public async Task LoadAsync()
