@@ -2,6 +2,7 @@
 using FriendOrganize.DataAccess;
 using FriendOrganize.UI.Data;
 using FriendOrganize.UI.ViewModels;
+using Prism.Events;
 
 namespace FriendOrganize.UI
 {
@@ -10,6 +11,8 @@ namespace FriendOrganize.UI
         public IContainer Bootstrap()
         {
             var builder = new ContainerBuilder();
+
+            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
 
             builder.RegisterType<FriendOrganizeDbContext>().AsSelf();
             builder.RegisterType<MainViewModel>().AsSelf();
