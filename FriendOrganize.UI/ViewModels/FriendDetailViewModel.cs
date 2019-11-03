@@ -37,6 +37,12 @@ namespace FriendOrganize.UI.ViewModels
 		private async void OnSaveExecute()
 		{
 			await _dataService.SaveAsync(_friend);
+			_evenAggregator.GetEvent<AfterFriendSaveEvent>().Publish(
+				new AfterFriendSaveEventArg()
+				{
+					Id = Friend.Id ,
+					DisplayMember = string.Format("{0} {1}", Friend.FirstName, Friend.LastName)
+				});
 		}
 
 		private bool OnSaveCanExecute()

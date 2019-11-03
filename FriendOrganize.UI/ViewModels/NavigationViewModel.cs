@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using FriendOrganize.Model;
 using FriendOrganize.UI.Data;
@@ -23,6 +24,16 @@ namespace FriendOrganize.UI.ViewModels
 			_friendLookupService = friendLookupDataService;
 			_eventAgg = eventAggregator;
 			Friends = new ObservableCollection<LookupItem>();
+			_eventAgg.GetEvent<AfterFriendSaveEvent>().Subscribe(AfterFriendSaved);
+		}
+
+		public ObservableCollection<LookupItem> Friends { get; set; }
+
+
+		private void AfterFriendSaved(AfterFriendSaveEventArg savedFriend)
+		{
+			var lookedupItem =  Friends.Single(l => l.Id == savedFriend.Id);
+			lookedupItem.DisplayMember = savedFriend.DisplayMember;
 		}
 
 		public async Task LoadAsync()
@@ -37,7 +48,6 @@ namespace FriendOrganize.UI.ViewModels
 
 		private LookupItem _selectedFriend;
 
-		public ObservableCollection<LookupItem> Friends { get; set; }
 
 		public LookupItem SelectedFriend
 		{
