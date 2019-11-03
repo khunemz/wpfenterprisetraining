@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Threading;
 using Autofac;
 using FriendOrganize.UI.Data;
 using FriendOrganize.UI.ViewModels;
@@ -19,6 +20,14 @@ namespace FriendOrganize.UI
 			
 
 			mainWindow.Show();
+		}
+
+
+		private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+		{
+
+			MessageBox.Show("Unexpected error occured " + e.Exception.Message);
+			e.Handled = true;
 		}
 	}
 }
