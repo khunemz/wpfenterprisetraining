@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using FriendOrganize.Model;
 using FriendOrganize.UI.Data;
 using FriendOrganize.UI.Event;
+using Prism.Commands;
 using Prism.Events;
 
 namespace FriendOrganize.UI.ViewModels
@@ -15,7 +17,7 @@ namespace FriendOrganize.UI.ViewModels
 		Task LoadDataAsync(int friendId);
 	}
 
-	class FriendDetailViewModel : ViewModelBase, IFriendDetailViewModel
+	class FriendDetailViewModel : ViewModelBase, IFriendDetailViewModel 
 	{
 		private IFriendDataService _dataService;
 		private Friend _friend;
@@ -27,6 +29,19 @@ namespace FriendOrganize.UI.ViewModels
 			_dataService = dataService;
 			_evenAggregator = eventAggregator;
 			_evenAggregator.GetEvent<OpenFriendDetailViewEvent>().Subscribe(OnOpenFriendDetailView);
+
+
+			SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+		}
+
+		private async void OnSaveExecute()
+		{
+			await _dataService.SaveAsync(_friend);
+		}
+
+		private bool OnSaveCanExecute()
+		{
+			throw new NotImplementedException();
 		}
 
 		private async void OnOpenFriendDetailView(int friendId)
@@ -40,6 +55,8 @@ namespace FriendOrganize.UI.ViewModels
 			Friend = await _dataService.GetByIdAsync(friendId);
 		}
 
+		
+
 
 		public Friend Friend
 		{
@@ -50,5 +67,7 @@ namespace FriendOrganize.UI.ViewModels
 				OnPropertyChanged();
 			}
 		}
+
+		public ICommand SaveCommand { get; set; }
 	}
 }
